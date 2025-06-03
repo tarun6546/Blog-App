@@ -3,18 +3,17 @@ const cors = require('cors');
 const morgan = require('morgan');
 const colors = require('colors');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db'); // Importing the database connection
 
-//mongodb connection
-
-
-//config dotenv
+//config env
 dotenv.config();
 
-//mongodb connection
-connectDB();
+//import db connection
+const connectDB = require('./config/db');
 
-//rest objects
+// Import routes
+const userRoutes = require('./routes/userRoutes');
+
+//rest object
 const app = express();
 
 //middlewares
@@ -22,7 +21,13 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));     
 
+//mongodb connection
+connectDB();
+
 //routes
+app.use('/api/v1/user', userRoutes);
+
+//rest api
 app.get('/', (req, res) => {
     res.status(200).send({
         "message": "Welcome to Node Server"
@@ -30,11 +35,10 @@ app.get('/', (req, res) => {
 });
 
 //port
-
 const PORT = process.env.PORT || 8080;
 const DEV_MODE = process.env.DEV_MODE || 'development';
 
-//listening to server
+//listen
 app.listen(PORT, () => {
-    console.log(`Server is running on ${DEV_MODE} port ${PORT}`.bgCyan.white);
+    console.log(`Server Running on port ${PORT}`.bgCyan.white);
 });

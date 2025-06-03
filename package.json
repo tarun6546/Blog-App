@@ -4,12 +4,13 @@
   "description": "a simply blog app",
   "main": "server.js",
   "scripts": {
-    "start":" node server.js",
+    "start": " node server.js",
     "server": "nodemon server.js"
   },
   "author": "Tarun",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
