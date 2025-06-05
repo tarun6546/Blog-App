@@ -88,7 +88,7 @@ exports.loginController = async(req,res) => {
             });
         }
         //check user
-        const user = await userModel.findOne({email}).select('+password'); // Select password field as it is not selected by default
+        const user = await userModel.findOne({email}); // Select password field as it is not selected by default
         if(!user){
             return res.status(200).send({
                 success: false,
@@ -115,6 +115,8 @@ exports.loginController = async(req,res) => {
             success: false,
             message: 'Error in login',
             error
+
+            
         });
     }
     

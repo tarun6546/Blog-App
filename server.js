@@ -12,6 +12,7 @@ const connectDB = require('./config/db');
 
 // Import routes
 const userRoutes = require('./routes/userRoutes');
+const blogRoutes = require('./routes/blogRoutes');
 
 //rest object
 const app = express();
@@ -26,6 +27,7 @@ connectDB();
 
 //routes
 app.use('/api/v1/user', userRoutes);
+app.use('/api/v1/blog', blogRoutes);
 
 //rest api
 app.get('/', (req, res) => {
